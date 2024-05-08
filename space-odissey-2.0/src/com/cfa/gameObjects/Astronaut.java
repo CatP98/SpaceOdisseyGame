@@ -36,9 +36,9 @@ public class Astronaut {
 
     public Astronaut(){
         astroUp = ASTRO_PREFIX + "up.png";
-        astroUpTurbo = ASTRO_PREFIX + "up_turbo.png";
+        astroUpTurbo = ASTRO_PREFIX + "up-turbo.png";
         astroDown = ASTRO_PREFIX + "down.png";
-        astroDownTurbo = ASTRO_PREFIX + "down_turbo.png";
+        astroDownTurbo = ASTRO_PREFIX + "down-turbo.png";
         astroSickUp = ASTRO_PREFIX + "up-dangerous.png";
         astroSickDown = ASTRO_PREFIX + "down-dangerous.png";
         astroLifeUp = ASTRO_PREFIX + "up-life.png";

@@ -121,10 +121,12 @@ public void setGame(Game game){
 
         if(tPressed && shiftPressed){
             astronaut.changeToTurbo();
+            System.out.println("Change to turbo");
         }
 
         if(nPressed && shiftPressed){
             astronaut.changeToNormal();
+            System.out.println("Change to normal");
         }
 
     }
