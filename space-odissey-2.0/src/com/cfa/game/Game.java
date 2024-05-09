@@ -27,9 +27,14 @@ public class Game {
         astronaut = new Astronaut();
         SPEED = Speed.SLOW.getSpeedValue();
 
+        System.out.println("Game Created");
+
     }
 
-    public void start(){}
+    public void start(Background background){
+        background.moveBackground();
+    }
+
     public void pause(){}
     public void resume(){}
     public void exitGame(){

@@ -9,24 +9,30 @@ import com.cfa.gameObjects.SpaceShipItem;
 public class Main {
     public static void main(String[] args) {
 
+
         Game game = new Game();
 
+        Background background = new Background();
+        System.out.println(background.getHeight());
+        System.out.println(background.getWidth());
+
+
         Astronaut astronaut = new Astronaut();
+        astronaut.setBackground(background);
+        System.out.println(astronaut.getHeight());
+        System.out.println(astronaut.getWidth());
+        System.out.println(astronaut.getPositionX());
+        System.out.println(astronaut.getPositionY());
 
         KeyboardLogic keyboardLogic = new KeyboardLogic();
-        keyboardLogic.setGame(game);
         keyboardLogic.setAstronaut(astronaut);
+        keyboardLogic.setGame(game);
 
-        Background background = new Background();
-        astronaut.setBackground(background);
+        //game.setBackground(background);
+        game.setAstronaut(astronaut);
         astronaut.setGame(game);
 
-
-
-        game.setBackground(background);
-        game.setAstronaut(astronaut);
-
-        game.start();
+        game.start(background);
 
     }
 }

@@ -2,9 +2,9 @@ package com.cfa.game;
 
 public enum Speed {
 
-    FAST(20),
-    MEDIUM(11),
-    SLOW(5);
+    FAST(30),
+    MEDIUM(20),
+    SLOW(10);
 
     private int speedValue;
 

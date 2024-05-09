@@ -8,11 +8,12 @@ import com.cfa.game.Speed;
 public class Astronaut {
     private Game game;
     private Background background;
-    private Rock rock;
-    private SpaceShipItem spaceShipItem;
+    //private Rock rock;
+    //private SpaceShipItem spaceShipItem;
 
-    private static final double x = 8;
+    private static final double x = 0;
     private double y;
+    private int width, height;
 
     private boolean healthy = true;
     private boolean movingUp = true; //!up = down
@@ -35,8 +36,8 @@ public class Astronaut {
 
 
     public Astronaut(){
-        astroUp = ASTRO_PREFIX + "up.png";
-        astroUpTurbo = ASTRO_PREFIX + "up-turbo.png";
+        astroUp = ASTRO_PREFIX + "up (2).png";
+        astroUpTurbo = ASTRO_PREFIX + "up-turbo (1).png";
         astroDown = ASTRO_PREFIX + "down.png";
         astroDownTurbo = ASTRO_PREFIX + "down-turbo.png";
         astroSickUp = ASTRO_PREFIX + "up-dangerous.png";
@@ -46,11 +47,14 @@ public class Astronaut {
         astroLifeDown = ASTRO_PREFIX + "down-life.png";
         astroLifeDownTurbo = ASTRO_PREFIX + "down-tubo-life.png";
 
-        y = 530;
+        y = -100;
 
         astroPicture = new Picture(x, y, astroUp);
         astroPicture.load(astroUp);
         astroPicture.draw();
+        width = astroPicture.getWidth();
+        height = astroPicture.getHeight();
+        System.out.println("astronaut created");
 
     }
 
@@ -65,14 +69,14 @@ public class Astronaut {
 
     public void moveUp(){
         if(y - Game.SPEED <= astroPicture.getHeight()){
-            y = y -Game.SPEED;
-            astroPicture.translate(0, Game.SPEED);
+            y = y + Game.SPEED;
+            astroPicture.translate(0, - Game.SPEED);
         }
         System.out.println("Astronaut moved up");
     }
 
     public void moveDown(){
-        if(y + Game.SPEED <= (background.getHeight() - astroPicture.getHeight())){
+        if((y + Game.SPEED - astroPicture.getHeight()) <= background.getHeight() ){
             y = y + Game.SPEED;
             astroPicture.translate(0, Game.SPEED);
         }
@@ -104,6 +108,11 @@ public class Astronaut {
         }
     }
 
+    public void levelDown(){
+        Game.setSpeed(Speed.SLOW.getSpeedValue());
+        leveledUp = false;
+    }
+
     public void changeToNormal(){
         if(turbo){
             if(movingUp){
@@ -126,6 +135,7 @@ public class Astronaut {
             astroPicture.load(astroSickDown);
             healthy = false;
         }
+        levelDown();
     }
 
     public Picture getAstroPicture() {
@@ -136,4 +146,19 @@ public class Astronaut {
         this.astroPicture = astroPicture;
     }
 
+    public int getHeight(){
+        return height;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public double getPositionX(){
+       return x;
+    }
+
+    public double getPositionY(){
+        return y;
+    }
 }
