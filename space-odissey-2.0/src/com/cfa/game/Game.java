@@ -1,14 +1,12 @@
 package com.cfa.game;
 
 import com.cfa.gameObjects.Astronaut;
-import com.cfa.gameObjects.Rock;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
 public class Game {
 
     private Astronaut astronaut;
-    //private Rock rock;
     private CollisionDetector collisionDetector;
     private Background background;
 
@@ -55,6 +53,10 @@ public class Game {
 
     public static void setSpeed(int speed){
         Game.SPEED = speed;
+    }
+
+    public static int getSpeed(){
+        return Game.SPEED;
     }
 
     public void setCollisionDetector(CollisionDetector collisionDetector){

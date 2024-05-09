@@ -5,14 +5,14 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Background {
 
     private Picture[] backgrounds;
-    private int width, height;
+
     //private Picture earth;
     //private Picture planet;
 
     private int backgroundX;
 
     private final int maxX = 1080;
-    private final int maxY = 566;
+    private final int maxY = 380;
 
 
     public Background() {
@@ -35,11 +35,11 @@ public class Background {
     }
 
     public int getWidth() {
-        return width;
+        return maxX;
     }
 
     public int getHeight() {
-        return height;
+        return maxY;
     }
 
     public void moveBackground() {

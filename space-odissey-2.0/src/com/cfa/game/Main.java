@@ -1,9 +1,7 @@
 package com.cfa.game;
 
 import com.cfa.gameObjects.Astronaut;
-import com.cfa.gameObjects.UFO;
-import com.cfa.gameObjects.Rock;
-import com.cfa.gameObjects.SpaceShipItem;
+import com.cfa.gameObjects.Obstacles;
 
 
 public class Main {
@@ -31,6 +29,13 @@ public class Main {
         //game.setBackground(background);
         game.setAstronaut(astronaut);
         astronaut.setGame(game);
+
+        CollisionDetector collisionDetector = new CollisionDetector();
+        game.setCollisionDetector(collisionDetector);
+        collisionDetector.setGame(game);
+        collisionDetector.setAstronaut(astronaut);
+        Obstacles.setAstronaut(astronaut);
+
 
         game.start(background);
 

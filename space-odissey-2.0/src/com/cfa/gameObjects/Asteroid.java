@@ -1,6 +1,6 @@
 package com.cfa.gameObjects;
 
-public class UFO extends Obstacles implements BadEffect{
+public class Asteroid extends Obstacles implements BadEffect {
     @Override
     public void decrementScore() {
 

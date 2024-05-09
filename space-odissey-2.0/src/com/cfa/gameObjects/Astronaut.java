@@ -32,25 +32,29 @@ public class Astronaut {
     private String astroLifeUpTurbo;
     private String astroLifeDown;
     private String astroLifeDownTurbo;
+    private String astroHappy;
+    private String astroTurn;
 
 
 
     public Astronaut(){
-        astroUp = ASTRO_PREFIX + "up (2).png";
-        astroUpTurbo = ASTRO_PREFIX + "up-turbo (1).png";
-        astroDown = ASTRO_PREFIX + "down.png";
-        astroDownTurbo = ASTRO_PREFIX + "down-turbo.png";
-        astroSickUp = ASTRO_PREFIX + "up-dangerous.png";
-        astroSickDown = ASTRO_PREFIX + "down-dangerous.png";
-        astroLifeUp = ASTRO_PREFIX + "up-life.png";
-        astroLifeUpTurbo = ASTRO_PREFIX + "up-turbo-life.png";
-        astroLifeDown = ASTRO_PREFIX + "down-life.png";
-        astroLifeDownTurbo = ASTRO_PREFIX + "down-tubo-life.png";
+        astroUp = ASTRO_PREFIX + "a-up-2.png";
+        astroUpTurbo = ASTRO_PREFIX + "a-up-turbo.png";
+        astroDown = ASTRO_PREFIX + "a-down-1.png";
+        astroDownTurbo = ASTRO_PREFIX + "a-down-turbo.png";
+        astroSickUp = ASTRO_PREFIX + "a-up-sick.png";
+        astroSickDown = ASTRO_PREFIX + "a-down-2-sick.png";
+        astroLifeUp = ASTRO_PREFIX + "a-up-life.png";
+        astroLifeUpTurbo = ASTRO_PREFIX + "a-turbo-life.png";
+        astroLifeDown = ASTRO_PREFIX + "a-down-2-life.png";
+        astroLifeDownTurbo = ASTRO_PREFIX + "a-down-2-life.png";
+        astroHappy = ASTRO_PREFIX + "a-celebration.png";
+        astroTurn = ASTRO_PREFIX + "a-turn.png";
 
-        y = -100;
+        y = 160;
 
-        astroPicture = new Picture(x, y, astroUp);
-        astroPicture.load(astroUp);
+        astroPicture = new Picture(x, y, astroHappy);
+        astroPicture.load(astroHappy);
         astroPicture.draw();
         width = astroPicture.getWidth();
         height = astroPicture.getHeight();
@@ -68,19 +72,43 @@ public class Astronaut {
 
 
     public void moveUp(){
-        if(y - Game.SPEED <= astroPicture.getHeight()){
-            y = y + Game.SPEED;
-            astroPicture.translate(0, - Game.SPEED);
+        if(astroPicture.getY() - Game.SPEED >= -80 ){
+            if(turbo){
+                astroPicture.load(astroUpTurbo);
+            } else if(!turbo && healthy){
+                astroPicture.load(astroTurn);
+                astroPicture.load(astroUp);
+            } else if(!turbo && !healthy){
+                astroPicture.load(astroSickUp);
+            }
+            astroPicture.translate(0, -Game.SPEED);
+            movingUp = true;
         }
-        System.out.println("Astronaut moved up");
+        else {
+            movingUp = false;
+        }
+
     }
 
     public void moveDown(){
-        if((y + Game.SPEED - astroPicture.getHeight()) <= background.getHeight() ){
-            y = y + Game.SPEED;
+        if(y + Game.SPEED <= 380){
+            if(!turbo){
+                if(healthy){
+                    astroPicture.load(astroTurn);
+                    astroPicture.load(astroDown);
+                } else if(!healthy){
+                    astroPicture.load(astroSickDown);
+                }
+            }
+            else if(turbo){
+                astroPicture.load(astroDownTurbo);
+            }
             astroPicture.translate(0, Game.SPEED);
+            movingUp = false;
         }
-        System.out.println("Astronaut moved down");
+        else{
+            movingUp = true;
+        }
     }
 
     public void fire(){}
@@ -96,10 +124,11 @@ public class Astronaut {
                 astroPicture.load(astroDownTurbo);
                 Game.setSpeed(Speed.FAST.getSpeedValue());
                 turbo = true;
-
             }
         }
     }
+
+    public void shieldUp(){}
 
     public void levelUp(){
         if(!turbo) {
@@ -138,11 +167,11 @@ public class Astronaut {
         levelDown();
     }
 
-    public Picture getAstroPicture() {
+    public Picture getPicture() {
         return astroPicture;
     }
 
-    public void setAstroPicture(Picture astroPicture) {
+    public void setPicture(Picture astroPicture) {
         this.astroPicture = astroPicture;
     }
 
