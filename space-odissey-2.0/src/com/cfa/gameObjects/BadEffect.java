@@ -2,8 +2,8 @@ package com.cfa.gameObjects;
 
 public interface BadEffect {
 
-    void decrementScore();
+    int decrementScore();
 
-    void takeHealth();
+    int takeHealth();
 
 }

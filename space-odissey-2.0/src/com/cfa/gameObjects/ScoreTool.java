@@ -1,2 +1,4 @@
-package com.cfa.gameObjects;public class ScoreTool {
+package com.cfa.gameObjects;
+
+public class ScoreTool {
 }

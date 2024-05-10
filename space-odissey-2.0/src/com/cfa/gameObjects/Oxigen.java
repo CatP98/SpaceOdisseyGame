@@ -5,15 +5,23 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Oxigen extends Obstacles implements GoodEffect{
 
-    private static Picture oxigen;
+    private /*static */ Picture oxigen;
     private static double x;
     private static double y;
 
     public Oxigen() {
         super();
-        x = background.getWidth() + oxigen.getWidth();
-        y = Math.random() * background.getHeight() + oxigen.getHeight();
+        /*
+        x = background.getWidth() ;
+        y = (Math.random() * background.getHeight()) + 1;
+
+         */
+        x = 1080; //background.getWidth();
+        y = (Math.random() * 355.5) + 10 ;//(Math.random() * background.getHeight()) + 1;
+
         oxigen = new Picture(x,y,"resources/o2 .png");
+        oxigen.draw();
+        System.out.println("oxigen created");
     }
     @Override
     public int incrementScore() {
@@ -27,12 +35,16 @@ public class Oxigen extends Obstacles implements GoodEffect{
 
     @Override
     public void move() {
-        if(x + oxigen.getWidth() < background.getWidth()) {
-            oxigen.translate(getGameSpeed(), 0);
-        }
-        else {
+        if(oxigen.getX() + oxigen.getWidth() >= 0) {
+            oxigen.translate(-getGameSpeed(), 0);
+        } else {
             oxigen.delete();
         }
+    }
 
+
+    @Override
+    public Picture getPicture() {
+        return oxigen;
     }
 }

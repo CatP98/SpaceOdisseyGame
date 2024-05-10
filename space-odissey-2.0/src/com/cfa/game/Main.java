@@ -7,36 +7,29 @@ import com.cfa.gameObjects.Obstacles;
 public class Main {
     public static void main(String[] args) {
 
-
+        // 1st - Instances:
         Game game = new Game();
-
         Background background = new Background();
-        System.out.println(background.getHeight());
-        System.out.println(background.getWidth());
-
-
         Astronaut astronaut = new Astronaut();
-        astronaut.setBackground(background);
-        System.out.println(astronaut.getHeight());
-        System.out.println(astronaut.getWidth());
-        System.out.println(astronaut.getPositionX());
-        System.out.println(astronaut.getPositionY());
-
         KeyboardLogic keyboardLogic = new KeyboardLogic();
+        CollisionDetector collisionDetector = new CollisionDetector();
+
+        // 2nd - Dependencies:
+        game.setAstronaut(astronaut);
+        game.setCollisionDetector(collisionDetector);
+
+        astronaut.setBackground(background);
+
         keyboardLogic.setAstronaut(astronaut);
         keyboardLogic.setGame(game);
 
-        //game.setBackground(background);
-        game.setAstronaut(astronaut);
-        astronaut.setGame(game);
-
-        CollisionDetector collisionDetector = new CollisionDetector();
-        game.setCollisionDetector(collisionDetector);
         collisionDetector.setGame(game);
         collisionDetector.setAstronaut(astronaut);
+
         Obstacles.setAstronaut(astronaut);
 
 
+        // Start the game:
         game.start(background);
 
     }

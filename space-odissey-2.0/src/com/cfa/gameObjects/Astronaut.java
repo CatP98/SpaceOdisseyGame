@@ -8,8 +8,7 @@ import com.cfa.game.Speed;
 public class Astronaut {
     private Game game;
     private Background background;
-    //private Rock rock;
-    //private SpaceShipItem spaceShipItem;
+
 
     private static final double x = 0;
     private double y;
@@ -72,7 +71,7 @@ public class Astronaut {
 
 
     public void moveUp(){
-        if(astroPicture.getY() - Game.SPEED >= -80 ){
+        if(astroPicture.getY() - Game.SPEED >= 10 ){
             if(turbo){
                 astroPicture.load(astroUpTurbo);
             } else if(!turbo && healthy){
@@ -91,7 +90,9 @@ public class Astronaut {
     }
 
     public void moveDown(){
-        if(y + Game.SPEED <= 380){
+        System.out.println(astroPicture.getY() + Game.SPEED);
+        System.out.println(astroPicture.getY() );
+        if(astroPicture.getY() + Game.SPEED <= 365.5){
             if(!turbo){
                 if(healthy){
                     astroPicture.load(astroTurn);

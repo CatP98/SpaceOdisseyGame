@@ -4,6 +4,7 @@ package com.cfa.game;
 import com.cfa.gameObjects.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class ObstaclesFactory {
 
@@ -11,12 +12,23 @@ public class ObstaclesFactory {
     private static int spaceShipItemsLeft = 6;
 
     public ObstaclesFactory() {
+        obstacles = new ArrayList<>();
     }
 
+
     public void addSpaceShipItem() {
-        SpaceShipItem spaceShipItem = new SpaceShipItem();
-        spaceShipItemsLeft--;
-        obstacles.add(spaceShipItem);
+        if(existMoreSpaceShipItems()){
+            SpaceShipItem spaceShipItem = new SpaceShipItem();
+            spaceShipItemsLeft--;
+            obstacles.add(spaceShipItem);
+        }
+    }
+
+    public boolean existMoreSpaceShipItems(){
+        while(spaceShipItemsLeft > 0) {
+            return true;
+        }
+        return false;
     }
 
     public void addAsteroid(){
@@ -28,8 +40,14 @@ public class ObstaclesFactory {
         UFO ufo = new UFO();
         obstacles.add(ufo);
     }
-    public void removeObstacle(Obstacles obstacle) {
-        obstacles.remove(obstacle);
+
+    public void addO2(){
+        Oxigen oxigen = new Oxigen();
+        obstacles.add(oxigen);
+    }
+
+    public void removeObstacle(int i) {
+        obstacles.remove(i);
     }
 
     public void removeObstacles(){
@@ -40,5 +58,11 @@ public class ObstaclesFactory {
         }
     }
 
+    public int getSize(){
+        return obstacles.size();
+    }
 
+    public Obstacles getObstacle(int index){
+        return obstacles.get(index);
+    }
 }
